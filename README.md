@@ -39,7 +39,11 @@
    
         pwd  #copy the path you get here. Provide an absolute path to below k3d c
 
-4) **Config file to connect to cluster**
+         k3d cluster create --k3s-server-arg "--no-deploy=traefik" --agents 2 -v "/home/<user_name>/kube:/kube@agent[0,1]" -v "/home/<user_name>/kube:/kube@server[0]" --port "80:80@loadbalancer"
+
+   ![createCluster](https://github.com/Vishesh-Paliwal/Digit_SetUp/blob/main/Images/create-cluster.png)
+
+5) **Config file to connect to cluster**
    
       Once the cluster creation is successful, get the kubeconfig file, that enables you to connect to the cluster.
       
@@ -54,20 +58,21 @@
       kubectl cluster-info
       
       OutPut
-      
-      Kubernetes control plane is running at https://0.0.0.0:33931
-      CoreDNS is running at https://0.0.0.0:33931/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
-      Metrics-server is running at https://0.0.0.0:33931/api/v1/namespaces/kube-system/services/https:metrics-server:/proxy
+   
+     ![cluster-info](https://github.com/Vishesh-Paliwal/Digit_SetUp/blob/main/Images/cluster-info.png) 
+     
       
       **NOTE** IF IT IS NOT RUNNING / OR NOT RUNNING AT 0.0.0.0:XXXXX  :
       
       1> TRY STARTING MINKUBE
+
+      ![miniKubeStart](https://github.com/Vishesh-Paliwal/Digit_SetUp/blob/main/Images/minikubeStart.png)
       
       2> Check at time of creating cluster , if there was any error due to a blocked port , 
 
 
 
-5) **Verify cluster list and nodes**
+7) **Verify cluster list and nodes**
   
           k3d cluster list
 
@@ -103,7 +108,7 @@
    
       k3d-k3s-default-server-0   59m          0%     2286Mi          14%  
 
-6)  # Deployment Configuration
+8)  # Deployment Configuration
 
     Clone the following DIGIT Devops GitRepo. You may have to install git and then run git clone on your machine.
 
@@ -122,7 +127,7 @@
 
         sudo nano /etc/hosts
 
-7) # Deployment
+9) # Deployment
 
       Once the deployment config is ready run the following command. Provide the necessary details and the interactive installer will take care of the rest.
       
@@ -143,6 +148,8 @@
       6. Are we good to proceed with the actual deployment?
       
       All Done.
+
+      ![deployQ](https://github.com/Vishesh-Paliwal/Digit_SetUp/blob/main/Images/deployQ.png)
       
       2. Check all the pods are running and ready using the below command
       
@@ -158,7 +165,11 @@
 
          **Note : re-run command again in few minutes , it may take some time to get all services running ,**
 
-8) # Post-Deployment Steps
+         ![deployed](https://github.com/Vishesh-Paliwal/Digit_SetUp/blob/main/Images/deployed.png)
+
+         ![status-check](https://github.com/Vishesh-Paliwal/Digit_SetUp/blob/main/Images/statusCheck.png)
+
+11) # Post-Deployment Steps
 
     Post-deployment the application is now accessible from the configured domain.
     
@@ -217,3 +228,8 @@
     **Password: eGov@4321**
     
     **City: CITYA**
+
+
+# Try Sending request via postman
+
+   ![postman](https://github.com/Vishesh-Paliwal/Digit_SetUp/blob/main/Images/postman.png)
